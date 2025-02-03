@@ -20,12 +20,12 @@ Testing Data Connect feature available on ISE 3.2 and above.
    - [JDK download](https://www.oracle.com/java/technologies/downloads/) 
       > i.e. for windows 10/11: Install on  the machine [JDK 21 - x64 MSI Installer](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi), then change path and add variable under **Edit the system enviroment variables > Advance > Environment Variables**. path: 'C:\Program Files\Java\jdk-21\bin' variable name: JAVA_HOME in 'C:\Program Files\Java\jdk-21'
    - [Oracle JDBC drivers guide](https://www.oracle.com/database/technologies/maven-central-guide.html) and [Oracle JDBC drivers download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
-      > Download [ojdbc11.jar](https://download.oracle.com/otn-pub/otn_software/jdbc/236/ojdbc11.jar) in a folder such as 'C:\Users\administrator\Documents\Database Resources'
+      > Download [ojdbc11.jar](https://download.oracle.com/otn-pub/otn_software/jdbc/236/ojdbc11.jar) in a folder such as 'C:\Users\administrator\Documents\Database_Resources'
 4. Install the following in your python enviroment.
 ```console
 pip install JayDeBeApi
 ```
-5. Use the below command to add all the downloaded certificates to the trust store.
+5. Use the below command under admin priviledge to add all the downloaded certificates to the trust store.
    - Enter a new trust store password when prompted for the same.
    - Enter **Y** when prompted whether to trust this certificate or not.
 ```JDK
@@ -33,4 +33,8 @@ keytool -import -alias <Name> -file <Data Connect certificate file path and name
 ```
    >Note: To use PKCS12 as the storetype, replace JKs with PKCS12 in the code. Ensure that the alias name is unique.
 
+```JDK
+keytool -import -alias "ISE_DataConnect" -file "C:\Users\administrator\Documents\Database_Resources" -storetype JKS -keystore "ISEDataLink"
+```
+Cisco123456#
 6. The "sample.py" is a sample script to establish ODBC connection to the Cisco ISE monitoring data base and fetch the required details.
