@@ -5,10 +5,17 @@ Testing Data Connect feature available on ISE 3.2 and above.
 ## Requirements
 1. Enable Data Connect on ISE
    - In the Cisco ISE GUI, click the Hamburger menu and choose **Administration > System > Settings > Data Connect**.
-2. After the Data Connect feature is enabled, an existing, self-signed certificate, called Data Connect Certificate, is imported and placed in the Trusted Certificates store of Cisco ISE. You must export this certificate from Cisco ISE and import it into the trusted certificate store of your SQL client before you try to establish a connection to the Cisco ISE database from that client.
-   - In the Cisco ISE admin portal, click the Hamburger menu and choose **Administration > System > Certificates > Certificate Management > Trusted Certificates.**
-   - Check the check box next to the certificate with the name Data Connect Certificate in the list of certificates.
-   - Click Export.
+2. After the Data Connect feature is enabled.
+   - In ISE 3.2, an existing self-signed certificate, called Data Connect Certificate, is imported and placed in the Trusted Certificates store of Cisco ISE. You must export this certificate from Cisco ISE and import it into the trusted certificate store of your SQL client before you try to establish a connection to the Cisco ISE database from that client.
+      - In the Cisco ISE admin portal, click the Hamburger menu and choose **Administration > System > Certificates > Certificate Management > Trusted Certificates.**
+      - Check the check box next to the certificate with the name Data Connect Certificate in the list of certificates.
+      - Click Export.
+   - In ISE 3.3 and above, based on whether the admin certifiate is issued by a CA or is a selfsigned certificate, the certificates that must be imported for connecting to Data Connect are different.
+      - **When the admin certificate is issued by a CA:** When the admin certificate is issued by a CA, the client must obtain all the certificates that are a part of the certificate chain that was used to sign the admin certificate. This certificate chain must be imported to the client's trusted wallet. However, you don't have to import the admin certificate.
+      - **When the admin certificate is a self-signed certificate:** When the admin certificate is a self-signed certificate, you must import the admin certificate to the client's trust store. Import the admin certificate by using the following procedure:
+         - In the Cisco ISE admin portal, click the hamburger Menu and choose **Administration > System > Certificates > Certificate Management > System Certificates.**
+         - Check the check box next to the certificate with the name Admin Certificate.
+         - Click Export. 
 3. To establish a database connection with the Python code, you must have ojdbcX.jar (X is the version) downloaded in your local client. (Select the correct version based on your client JDK eg: ojdbc11.jar). Therefore JDK is needed as well.
    - [JDK download](https://www.oracle.com/java/technologies/downloads/) 
    - [Oracle JDBC drivers download](https://www.oracle.com/database/technologies/maven-central-guide.html)
