@@ -8,13 +8,13 @@ cursor = None
 try:
     if jpype.isJVMStarted():
         print("already started!")
-    jar = '/Users/xyz/Downloads/ojdbc8.jar'
-    trustStore = "/Users/xyz/PycharmProjects/pkcs/store.jks" #Path of the trust store created using the keytool command
-    trustStorePassword = "lab123" #Password that you set for the local client trust store
-    ip_ise = "1.1.1.1"
+    jar = '/Users/administrator/Documents/Database_Resources/ojdbc11.jar'
+    trustStore = "Users/administrator/Documents/ISE_DataConnect/ISE_DataConnect/ISE_DataLink" #Path of the trust store created using the keytool command
+    trustStorePassword = "Cisco123" #Password that you set for the local client trust store
+    ip_ise = "198.18.133.16"
     port_ise = "2484"
     dataconnect_user = "dataconnect" #The username is always dataconnect
-    dataconnect_password = "C1sc01234#C$$" #The password is the same one that is set in the Data Connect window in the Cisco ISE GUI
+    dataconnect_password = "Cisco123456#" #The password is the same one that is set in the Data Connect window in the Cisco ISE GUI
     url = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcps)(HOST="+ip_ise+")(PORT="+port_ise+"))(CONNECT_DATA=(SID=cpm10)))" #ODBC connection details that are available in the Cisco ISE GUI
     jvm_path = jpype.getDefaultJVMPath()
     jpype.startJVM(jvm_path,    "-Djava.class.path=%s" % jar,
