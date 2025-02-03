@@ -18,7 +18,9 @@ Testing Data Connect feature available on ISE 3.2 and above.
          - Click Export. 
 3. To establish a database connection with the Python code, you must have ojdbcX.jar (X is the version) downloaded in your local client. (Select the correct version based on your client JDK eg: ojdbc11.jar). Therefore JDK is needed as well.
    - [JDK download](https://www.oracle.com/java/technologies/downloads/) 
-   - [Oracle JDBC drivers download](https://www.oracle.com/database/technologies/maven-central-guide.html)
+      > i.e. for windows 10/11: Install on  the machine [JDK 21 - x64 MSI Installer](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi), then change path and add variable under **Edit the system enviroment variables > Advance > Environment Variables**. path: 'C:\Program Files\Java\jdk-21\bin' variable name: JAVA_HOME in 'C:\Program Files\Java\jdk-21'
+   - [Oracle JDBC drivers guide](https://www.oracle.com/database/technologies/maven-central-guide.html) and [Oracle JDBC drivers download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+      > Download [ojdbc11.jar](https://download.oracle.com/otn-pub/otn_software/jdbc/236/ojdbc11.jar) in a folder such as 'C:\Users\administrator\Documents\Database Resources'
 4. Install the following in your python enviroment.
 ```console
 pip install JayDeBeApi
