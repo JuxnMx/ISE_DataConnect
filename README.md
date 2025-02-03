@@ -34,6 +34,6 @@ keytool -import -alias <Name> -file <Data Connect certificate file path and name
    >Note: To use PKCS12 as the storetype, replace JKs with PKCS12 in the code. Ensure that the alias name is unique.
 
 ```JDK
-keytool -import -alias "ISE_DataConnect" -file "C:\Users\administrator\Documents\Database_Resources" -storetype PKCS12 -keystore "ISE_DataLink"
+keytool -import -alias "ISE_DataConnect" -file "C:\Users\administrator\Documents\Database_Resources\ise1CXZTCertificate.pem" -storetype JKS -keystore "ISE_DataLink"
 ```
 6. The "sample.py" is a sample script to establish ODBC connection to the Cisco ISE monitoring data base and fetch the required details.
