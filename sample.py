@@ -9,7 +9,7 @@ try:
     if jpype.isJVMStarted():
         print("already started!")
     jar = '/Users/administrator/Documents/Database_Resources/ojdbc11.jar'
-    trustStore = "Users/administrator/Documents/ISE_DataConnect/ISE_DataConnect/ISE_DataLink" #Path of the trust store created using the keytool command
+    trustStore = "/Users/administrator/Documents/Database_Resources/ISE_DataLink" #Path of the trust store created using the keytool command
     trustStorePassword = "Cisco123" #Password that you set for the local client trust store
     ip_ise = "198.18.133.16"
     port_ise = "2484"
