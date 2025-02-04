@@ -6,7 +6,7 @@ import sys
 import os
 import warnings
 from urllib3.exceptions import InsecureRequestWarning
-from tqdm import tqdm #progress bar library
+from tqdm import tqdm
 
 conn = None
 cursor = None
