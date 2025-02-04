@@ -23,7 +23,14 @@ Testing Data Connect feature available on ISE 3.2 and above.
       > Download [ojdbc11.jar](https://download.oracle.com/otn-pub/otn_software/jdbc/236/ojdbc11.jar) in a folder such as 'C:\Users\administrator\Documents\Database_Resources'
 4. Install the following in your python enviroment.
 ```console
-pip install JayDeBeApi
+python.exe -m pip install --upgrade pip
+pip3 install JayDeBeApi
+```
+Optional for CSV files example
+```console
+pip3 install pandas
+pip3 install pyarrow
+pip3 install tqdm
 ```
 5. Use the below command under admin priviledge to add all the downloaded certificates to the trust store.
    - Enter a new trust store password when prompted for the same.
