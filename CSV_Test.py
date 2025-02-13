@@ -11,34 +11,12 @@ from tqdm import tqdm
 conn = None
 cursor = None
 
-def get_data2csv(ise_url,auth_ise,ise_index,file_path,Verify_SSL):
-    getMethod_url ='/api/v1/certs/trusted-certificate' #method URL path
-    ise_cert_url = f'{ise_url}{getMethod_url}'
-    getMethod_header = {
-                        'Content-Type' : 'application/json', 
-                        'Accept' : 'application/json'
-                    }
-    
-    response = requests.get(url = ise_cert_url, headers = getMethod_header, auth = auth_ise, verify = Verify_SSL)
-    if response.status_code == 200: #Code of successful process according to documentation
-        file_name = f'TrustedCertificates_ISE_{ise_index}' #Name of the obtained file
-        file_path = os.path.join(file_path,file_name)
-        if not os.path.exists(file_path):
-            os.makedirs(file_path)
-        print(f'code #{response.status_code}: Getting ISE Trusted Certificates in {fqdn}')
-        certificates = response.json()['response']
-        certificates_table = pd.DataFrame.from_dict(pd.json_normalize(certificates),orient='columns')
-        certificates_table.to_csv(os.path.join(file_path,f'{file_name}.csv'))
-        print(f'-> Creating the file:{file_name}.csv in {file_path}')
-        certificates_id = certificates_table['id'].tolist() #Getting the IDs
-        with tqdm(total=len(certificates_id),desc=f'-> Downloading Trusted Certificates in the folder', unit="cert") as pbar:
-            for certificate_id in certificates_id:
-                certificate_url = f'{ise_cert_url}/export/{certificate_id}'
-                export_cert(certificate_url, certificate_id, auth_ise, ise_index, file_path, Verify_SSL)
-                pbar.update(1)
-    else:
-        print(f'On ISE node {ise_index}: {fqdn}')
-        print(f'code #{response.status_code}: {eval(response.text)["message"]}')
+def get_data2csv(output_SQL,table_name,file_path,headers):
+    file_name = f'{table_name}' #Name of the obtained file
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+    output_table = pd.DataFrame(output_SQL,columns=headers)
+    output_table.to_csv(os.path.join(file_path,f'{file_name}.csv'))
 
 
 try:
@@ -68,13 +46,23 @@ try:
 
     #Sample Query 1: Listing all the Network Device Groups
 
-    cursor.execute('SELECT * from NETWORK_DEVICE_GROUPS')
+    cursor.execute('SELECT * from TACACS_AUTHORIZATION')
     output = cursor.fetchall()
-    print("\nList of Network Device Groups:")
-    print("\nCreated By\t\t\t Status\t\t Name\n")
-    for row in output:
-        print(row[3],"\t", row[6],"\t",row[2])
-
+    # print(type(output))
+    file_name = 'TACACS_AUTH'
+    file_path = 'C:/Users/administrator/Documents/Database_Resources/testing_tables' #Path and name of the folder 
+    # for row in output:
+    #     print(row[30],"\t", row[1],"\t",row[2])
+    headers =['ID','GENERATED_TIME','LOGGED_TIME','ISE_NODE',
+              'ATTRIBUTES','EXECUTION_STEPS','STATUS','EVENT',
+              'MESSAGE_TEXT','DEVICE_IPV6','DEVICE_NAME','DEVICE_IP',
+              'DEVICE_GROUP','DEVICE_PORT','EPOCH_TIME','FAILURE_REASON',
+              'USERNAME','AUTHORIZATION_POLICY','AUTHECNTICATION_PRIVILEGE_LEVEL',
+              'AUTHORIZATION_REQUEST_ATTR','AUTHORIZATION_RESPONSE_ATTR','SESSION_KEY',
+              'REMOTE_ADDRESS','SHELL_PROFILE','AUTHENTICATION_METHOD','AUTHENTICATION_TYPE',
+              'AUTHENTICATION_SERVICE','DEVICE_TYPE','LOCATION',
+              'MATCHED_COMMAND_SET','COMMAND_FROM_DEVICE']
+    get_data2csv(output,file_name,file_path,headers)
 
 
 
