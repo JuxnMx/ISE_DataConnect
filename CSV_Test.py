@@ -2,11 +2,7 @@ import jaydebeapi
 import jpype
 import traceback
 import pandas as pd
-import sys
 import os
-import warnings
-from urllib3.exceptions import InsecureRequestWarning
-from tqdm import tqdm
 
 conn = None
 cursor = None
@@ -44,7 +40,7 @@ try:
 
     cursor = conn.cursor()
 
-    #Sample Query 1: Listing all the Network Device Groups
+    #Sample Query 1: Getting all details of all the TACACS authorization records into a CSV
 
     cursor.execute('SELECT * from TACACS_AUTHORIZATION')
     output = cursor.fetchall()
