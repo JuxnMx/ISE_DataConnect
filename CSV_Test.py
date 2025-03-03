@@ -41,8 +41,9 @@ try:
     cursor = conn.cursor()
 
     #Sample Query 1: Getting all details of all the TACACS authorization records into a CSV
-
-    cursor.execute('SELECT * from TACACS_AUTHORIZATION')
+    # cursor.execute('SELECT * from TACACS_AUTHORIZATION')
+    tacacs_users=('juan','luca','javier')
+    cursor.execute(f'SELECT * from TACACS_AUTHORIZATION WHERE USERNAME IN {tacacs_users}')
     output = cursor.fetchall()
     # print(type(output))
     file_name = 'TACACS_AUTH'
