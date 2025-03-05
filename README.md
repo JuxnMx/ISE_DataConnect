@@ -30,7 +30,6 @@ Optional for CSV files example
 ```console
 pip3 install pandas-stubs
 pip3 install pyarrow
-pip3 install types-tqdm
 ```
 5. Use the below command under admin priviledge to add all the downloaded certificates to the trust store.
    - Enter a new trust store password when prompted for the same.
