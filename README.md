@@ -43,3 +43,4 @@ keytool -import -alias <Name> -file <Data Connect certificate file path and name
 keytool -import -alias "ISE_DataConnect" -file "C:\Users\administrator\Documents\Database_Resources\ise1CXZTCertificate.pem" -storetype JKS -keystore "ISE_DataLink"
 ```
 6. The "sample.py" is a sample script to establish ODBC connection to the Cisco ISE monitoring data base and fetch the required details.
+7. The "CSV_Test.py" is a sample script to establish ODBC connection to the Cisco ISE monitoring data base and fetch the required details in a CSV file.
