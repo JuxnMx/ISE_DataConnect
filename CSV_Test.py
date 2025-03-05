@@ -20,11 +20,11 @@ try:
         print("already started!")
     jar = '/Users/administrator/Documents/Database_Resources/ojdbc11.jar'
     trustStore = "/Users/administrator/Documents/Database_Resources/ISE_DataLink" #Path of the trust store created using the keytool command
-    trustStorePassword = "Cisco123" #Password that you set for the local client trust store
-    ip_ise = "198.18.133.16"
+    trustStorePassword = "YourTrustStorePassword" #Password that you set for the local client trust store
+    ip_ise = "1.1.1.1" #IP address of your secondary MnT
     port_ise = "2484"
     dataconnect_user = "dataconnect" #The username is always dataconnect
-    dataconnect_password = "Cisco123456#" #The password is the same one that is set in the Data Connect window in the Cisco ISE GUI
+    dataconnect_password = "DataConnectPassword" #The password is the same one that is set in the Data Connect window in the Cisco ISE GUI
     url = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcps)(HOST="+ip_ise+")(PORT="+port_ise+"))(CONNECT_DATA=(SID=cpm10)))" #ODBC connection details that are available in the Cisco ISE GUI
     jvm_path = jpype.getDefaultJVMPath()
     jpype.startJVM(jvm_path,    "-Djava.class.path=%s" % jar,
@@ -42,7 +42,7 @@ try:
 
     #Sample Query 1: Getting all details of all the TACACS authorization records into a CSV
     # cursor.execute('SELECT * from TACACS_AUTHORIZATION')
-    tacacs_users=('juan','luca','javier')
+    tacacs_users=('user1','user2','user3') #List of User you would like to have information on
     cursor.execute(f'SELECT * from TACACS_AUTHORIZATION WHERE USERNAME IN {tacacs_users}')
     output = cursor.fetchall()
     # print(type(output))
